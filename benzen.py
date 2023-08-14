@@ -19,14 +19,14 @@ TOKEN = 'token'
 
 # 接続に必要なオブジェクトを生成
 
-intents = discord.Intents.default()#適当に。
+intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
 
 @client.event
 async def on_ready():
     print("起動完了")
-    await tree.sync()#スラッシュコマンドを同期
+    await tree.sync()
     await client.change_presence(activity=discord.Game(name="/help | えっち", type=1))
 
 # メッセージ受信時に動作する処理
