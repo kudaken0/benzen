@@ -1,5 +1,6 @@
 # benzen
-
+# 使用しているライブラリ
+Discord.py v2
 # ベンゼンbotの説明(使用)
 [説明](https://benzen.kudaken.com/benzenbot.html)
 # ベンゼンbotの協力者など
