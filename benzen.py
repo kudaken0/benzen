@@ -2,6 +2,7 @@ import discord
 import random
 import logging
 from discord import app_commands
+
 # ログの出力名を設定
 logger = logging.getLogger('discoedbot')
 
@@ -15,7 +16,7 @@ logger.addHandler(sh)
 # ログの出力形式の設定
 formatter = logging.Formatter('%(asctime)s:%(filename)s:%(lineno)d:%(levelname)s:%(message)s')
 sh.setFormatter(formatter)
-TOKEN = 'xxxxxxxx'
+TOKEN = 'xxxxxx'
 
 # 接続に必要なオブジェクトを生成
 
@@ -36,7 +37,9 @@ async def on_message(message):
     if message.author.bot:
         return
  
-   
+
+
+
 
 @tree.command(name="ベンゼン",description="色んなメッセージを送ります")
 async def test_command(interaction: discord.Interaction):
@@ -75,9 +78,16 @@ async def test_command(interaction: discord.Interaction):
 
 @tree.command(name="help",description="ヘルプコマンドです")
 async def test_command(interaction: discord.Interaction):
-    ran = random.randrange(1)
-    if ran == 0: 
-        await interaction.response.send_message("```/ベンゼン: 色んなメッセージを送ります\n/なでなで: 使ってからのお楽しみです\n/56: ベンゼンの語録\n/ベンゼンコール\n/えっち: エッチコマンドです\n/メス堕ち: メス堕ちです```",ephemeral=True)
+   embed = discord.Embed(title="ヘルプ",description="ベンゼンbotで使えるコマンド一覧です",color=0xF1C40F)
+   embed.add_field(name="/ベンゼン",value="色んなメッセージ送ります",inline=False)
+   embed.add_field(name="/なでなで",value="使ってからのお楽しみです",inline=False)
+   embed.add_field(name="/56",value="ベンゼンの語録",inline=False)
+   embed.add_field(name="/ベンゼンコール",value="( ﾟ∀ﾟ)o彡°ベンゼン！ベンゼン！",inline=False)
+   embed.add_field(name="/えっち",value="エッチコマンドです",inline=False)
+   embed.add_field(name="/メス堕ち",value="メス堕ちです",inline=False)
+   embed.add_field(name="/教育",value="ビ〇グモーター副社長",inline=False)
+   embed.add_field(name="/おみくじ",value="今日のあなたの運勢が見れます",inline=False)
+   await interaction.response.send_message(embed=embed)
 
 
 @tree.command(name="なでなで",description="使ってからのお楽しみです。")
@@ -165,11 +175,20 @@ async def test_command(interaction: discord.Interaction):
         await interaction.response.send_message("教育教育教育教育教育教育教育教育教育教育教育教育教育教育教育教育死刑死刑死刑死刑死刑死刑死刑死刑死刑死刑死刑教育教育教育教育教育教育教育教育教育教育教育教育教育教育教育")
 
 
+@tree.command(name="ver",description="バージョンやそのバージョンの変更内容が見れます")
+async def test_command(interaction: discord.Interaction):
+   embed = discord.Embed(title="ベンゼンbot",description="ver. 2.4",color=0x57F287)
+   embed.add_field(name="/56",value="セリフ1つ削除",inline=False)
+   embed.add_field(name="/ベンゼン",value="セリフたくさん追加",inline=False)
+   embed.add_field(name="/教育",value="コマンド追加",inline=False)
+   embed.add_field(name="/おみくじ",value="コマンドの追加",inline=False)
+   await interaction.response.send_message(embed=embed)
 
 
-
-
-
+@tree.command(name="おみくじ",description="あなたの運勢が見れます")
+async def test_command(interaction: discord.Interaction):
+    result = ["大吉", "中吉", "小吉", "凶", "大凶 背後に気を付けてください"]
+    await interaction.response.send_message(f"おみくじ結果:" + random.choice(result))
 
 
 
@@ -186,10 +205,7 @@ async def on_guild_join(guild):     #サーバー参加時のメッセージ
         count += 1
         txch = channel[count]
         try:
-            await txch.send('ベンゼンbotにゃん！このbotは元ネタ『ベンゼン』の許可の上作成しました。発言することは大半はTwitterのツイートからもらいました。コマンドなどの説明は(b!help)\nサポートサーバー https://discord.gg/Gd5es9VDKn\nhp https://benzen.kudaken.com\n説明 https://benzen.kudaken.com\n※このbotは下ネタを発言します。苦手な人はご注意ください。')
-
-
-
+         await txch.send('ベンゼンbotにゃん！このbotは元ネタ『ベンゼン』の許可の上作成しました。発言することは大半はTwitterのツイートからもらいました。ヘルプコマンド 【/help】\nサポートサーバー https://discord.gg/Gd5es9VDKn\nホームページ https://benzen.kudaken.com\n仕様 https://benzen.kudaken.com/benzenbot.html\n※このbotは大体下ネタを発言します。苦手な人はご注意ください。')
 
 
 
