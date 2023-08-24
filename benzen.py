@@ -1,3 +1,4 @@
+import asyncio
 import discord
 import random
 import logging
@@ -16,7 +17,7 @@ logger.addHandler(sh)
 # ログの出力形式の設定
 formatter = logging.Formatter('%(asctime)s:%(filename)s:%(lineno)d:%(levelname)s:%(message)s')
 sh.setFormatter(formatter)
-TOKEN = 'xxxxxx'
+TOKEN = 'xxxxx'
 
 # 接続に必要なオブジェクトを生成
 
@@ -24,12 +25,20 @@ intents = discord.Intents.default()#適当に。
 client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
 
-
 @client.event
 async def on_ready():
+    await client.change_presence(status=discord.Status.online, activity=discord.Game(name="起動中"))  # ステータスメッセージを設定
     print("起動完了")
+    print(f'discord.py バージョン: {discord.__version__}')  # discord.pyのバージョンを表示
+    print ("ベンゼンbot ver 2.8")
     await tree.sync()#スラッシュコマンドを同期
-    await client.change_presence(activity=discord.Game(name="/help | えっち", type=1))
+    while True:
+        await client.change_presence(activity = discord.Activity(name="/help | えっち", type=discord.ActivityType.playing))
+        await asyncio.sleep(7)
+        joinserver=len(client.guilds)
+        servers=str(joinserver)
+        await client.change_presence(activity = discord.Activity(name="サーバー数:"+servers, type=discord.ActivityType.playing))
+        await asyncio.sleep(7)
 
 # メッセージ受信時に動作する処理
 @client.event
@@ -39,7 +48,11 @@ async def on_message(message):
         return
  
 
-
+@tree.command(name="導入サーバー数",description="ベンゼンbotの導入サーバー数が見れます")
+async def guild(interaction: discord.Interaction):
+    joinserver=len(client.guilds)
+    servers=str(joinserver)
+    await interaction.response.send_message("ベンゼンbotの導入サーバー数:"+servers)
 
 
 @tree.command(name="ベンゼン",description="色んなメッセージを送ります")
@@ -174,12 +187,7 @@ async def test_command(interaction: discord.Interaction):
         await interaction.response.send_message("教育教育教育教育教育教育教育教育教育教育教育教育教育教育教育教育死刑死刑死刑死刑死刑死刑死刑死刑死刑死刑死刑教育教育教育教育教育教育教育教育教育教育教育教育教育教育教育")
 
 
-@tree.command(name="ver",description="バージョンやそのバージョンの変更内容が見れます")
-async def test_command(interaction: discord.Interaction):
-   embed = discord.Embed(title="ベンゼンbot",description="ver. 2.5",color=0x57F287)
-   embed.add_field(name="埋め込みメッセージに変更",value="当botをサーバーに入れた際、埋め込みメッセージが送信されます",inline=False)
-   embed.add_field(name="誤字を修正",value="当botを入れた際に送信されるメッセージに誤字があったため修正",inline=False)
-   await interaction.response.send_message(embed=embed)
+
 
 
 
