@@ -17,7 +17,7 @@ logger.addHandler(sh)
 # ログの出力形式の設定
 formatter = logging.Formatter('%(asctime)s:%(filename)s:%(lineno)d:%(levelname)s:%(message)s')
 sh.setFormatter(formatter)
-TOKEN = 'xxxxx'
+TOKEN = 'xxxxxxx'
 
 # 接続に必要なオブジェクトを生成
 
@@ -219,7 +219,7 @@ async def on_guild_join(guild):
 
     for txch in channel:
         try:
-            embed = discord.Embed(title="ベンゼンbot", description="ベンゼンbotにゃ！このbotは元ネタ『ベンゼン』の許可の上作成しました。発言することの大半はTwitterのツイートからもらいました。ヘルプコマンド 【/help】\n[サポートサーバー](https://discord.gg/Gd5es9VDKn)\n[ホームページ](https://benzen.kudaken.com) \n[仕様](https://benzen.kudaken.com/benzenbot.html)\n※このbotは大体下ネタを発言します。苦手な人はご注意ください。", color=0xE67E22)
+            embed = discord.Embed(title="ベンゼンbot", description="ベンゼンbotにゃ！このbotは元ネタ『ベンゼン』の許可の上作成しました。発言することの大半はTwitterのツイートからもらいました。ヘルプコマンド 【/help】\n[サポートサーバー](https://discord.gg/Gd5es9VDKn)\n[ホームページ](https://benzen.kudaken.com) \n[仕様](https://benzen.kudaken.com/about.html)\n※このbotは大体下ネタを発言します。苦手な人はご注意ください。", color=0xE67E22)
             await txch.send(embed=embed)
         except discord.errors.Forbidden:
             continue
