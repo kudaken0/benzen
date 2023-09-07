@@ -17,7 +17,7 @@ logger.addHandler(sh)
 # ログの出力形式の設定
 formatter = logging.Formatter('%(asctime)s:%(filename)s:%(lineno)d:%(levelname)s:%(message)s')
 sh.setFormatter(formatter)
-TOKEN = 'xxxxxxx'
+TOKEN = 'xxxxxx'
 
 # 接続に必要なオブジェクトを生成
 
@@ -32,13 +32,14 @@ async def on_ready():
     print(f'discord.py バージョン: {discord.__version__}')  # discord.pyのバージョンを表示
     print ("ベンゼンbot ver 2.8")
     await tree.sync()#スラッシュコマンドを同期
+    channel_id = 937360727927291955  
+    channel = client.get_channel(channel_id)
+    if channel:
+        await channel.send('Botが起動したにゃ')
     while True:
-        await client.change_presence(activity = discord.Activity(name="/help | えっち", type=discord.ActivityType.playing))
-        await asyncio.sleep(7)
-        joinserver=len(client.guilds)
-        servers=str(joinserver)
-        await client.change_presence(activity = discord.Activity(name="サーバー数:"+servers, type=discord.ActivityType.playing))
-        await asyncio.sleep(7)
+      joinserver=len(client.guilds)
+      servers=str(joinserver)
+      await client.change_presence(activity = discord.Activity(name="/help | サーバー数: "+servers, type=discord.ActivityType.competing))
 
 # メッセージ受信時に動作する処理
 @client.event
@@ -101,6 +102,7 @@ async def test_command(interaction: discord.Interaction):
    embed.add_field(name="/メス堕ち",value="メス堕ちです",inline=False)
    embed.add_field(name="/教育",value="ビ〇グモーター副社長",inline=False)
    embed.add_field(name="/おみくじ",value="今日のあなたの運勢が確かめられます",inline=False)
+   embed.add_field(name="/サーバー導入数",value="現在ベンゼンbotが入っているサーバー数が送信されます",inline=False)
    await interaction.response.send_message(embed=embed)
 
 
@@ -219,7 +221,7 @@ async def on_guild_join(guild):
 
     for txch in channel:
         try:
-            embed = discord.Embed(title="ベンゼンbot", description="ベンゼンbotにゃ！このbotは元ネタ『ベンゼン』の許可の上作成しました。発言することの大半はTwitterのツイートからもらいました。ヘルプコマンド 【/help】\n[サポートサーバー](https://discord.gg/Gd5es9VDKn)\n[ホームページ](https://benzen.kudaken.com) \n[仕様](https://benzen.kudaken.com/about.html)\n※このbotは大体下ネタを発言します。苦手な人はご注意ください。", color=0xE67E22)
+            embed = discord.Embed(title="ベンゼンbotにゃ！", description="このbotは元ネタ『ベンゼン』の許可の上作成しました。発言することの大半はTwitterのツイートからもらいました。ヘルプコマンド 【/help】\n[サポートサーバー](https://discord.gg/Gd5es9VDKn)\n[ホームページ](https://benzen.kudaken.com) \n[仕様](https://benzen.kudaken.com/about.html)\n※このbotは大体下ネタを発言します。苦手な人はご注意ください。", color=0xE67E22)
             await txch.send(embed=embed)
         except discord.errors.Forbidden:
             continue
