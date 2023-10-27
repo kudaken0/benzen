@@ -17,7 +17,7 @@ logger.addHandler(sh)
 # ログの出力形式の設定
 formatter = logging.Formatter('%(asctime)s:%(filename)s:%(lineno)d:%(levelname)s:%(message)s')
 sh.setFormatter(formatter)
-TOKEN = 'OTM1MTU3NzA0OTM3MzA4MTcw.Ye6jew.ZooTA6FPA2zSkn854j9HZnu7v94'
+TOKEN = 'xxxxx'
 
 # 接続に必要なオブジェクトを生成
 
